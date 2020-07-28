@@ -50,7 +50,7 @@ public class PriceService {
 	@Path(TestConstants.PRODUCT_PATH)
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
-	public Response createPriceEntry(@Valid @RequestBody final Price priceDetails,@QueryParam(TestConstants.PRODUCT_ID) String ivr_call_log_id) {
+	public Response createPriceEntry(@Valid @RequestBody final Price priceDetails,@QueryParam(TestConstants.PRODUCT_ID) String product_id) {
 		logger.info("Entering  createProductEntry -->");	
 		
 		Response response = null;
@@ -60,7 +60,7 @@ public class PriceService {
 		 */
 		try {
 			if (isNullOrEmpty(priceDetails.getRange()) || isNullOrEmpty(priceDetails.getMax())
-					|| isNullOrEmpty(priceDetails.getMin())) {
+					|| isNullOrEmpty(priceDetails.getMin()) || isNullOrEmpty(product_id)) {
 				logger.error("INPUT_DATA: Mandtory are missing in input request");
 				productResponse.setFound(TestConstants.NUM_ZERO);
 				productResponse.setStatusMessage("Mandatory fileds are null or empty or missing");
