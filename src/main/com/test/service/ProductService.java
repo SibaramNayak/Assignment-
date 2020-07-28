@@ -52,11 +52,10 @@ public class ProductService {
 	public Response createProductEntry(@Valid @RequestBody final Product productDetails) {
 		logger.info("Entering  createProductEntry -->");	
 		
-		Response response = null;
-		
-		/**
-		 * Checking sellerId,title and manufacturer are mandatory for product entry
-		 */
+		Response response = null;		
+	
+		// Checking sellerId,title and manufacturer are mandatory for product entry
+	
 		try {
 			if (isNullOrEmpty(productDetails.getSellerId()) || isNullOrEmpty(productDetails.getTitle())
 					|| isNullOrEmpty(productDetails.getManufacturer())) {
@@ -106,13 +105,13 @@ public class ProductService {
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response updateProductEntry(@Valid @RequestBody final Product productDetails,@QueryParam(TestConstants.PRODUCT_ID) String product_id) {
-		logger.info("Entering  createProductEntry -->");	
+		logger.info("Entering  updateProductEntry -->");	
 		
 		Response response = null;
 		
-		/**
-		 * Checking sellerId,title and manufacturer are mandatory for product entry
-		 */
+		
+		// Checking product_id are mandatory for product entry
+		 
 		try {
 			if (isNullOrEmpty(product_id)) {
 				logger.error("product_id is missing in input request");
@@ -150,7 +149,7 @@ public class ProductService {
 			productResponse.setErrorInfo(errorInfo);
 			response = Response.status(Status.OK).entity(productResponse).build();
 		}
-		logger.info("Ending createProductEntry -->");
+		logger.info("Ending updateProductEntry -->");
 		return response;
 	}
 	/**

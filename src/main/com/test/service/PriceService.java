@@ -41,22 +41,22 @@ public class PriceService {
 	Product productData;
 	
 	/**
-	 * This method is create Product Entry
-	 * @param productDetails
+	 * This method is create Price Entry
+	 * @param priceDetails
 	 * @return
 	 */
 	
 	@POST
-	@Path(TestConstants.PRODUCT_PATH)
+	@Path(TestConstants.PRICE_PATH)
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response createPriceEntry(@Valid @RequestBody final Price priceDetails,@QueryParam(TestConstants.PRODUCT_ID) String product_id) {
-		logger.info("Entering  createProductEntry -->");	
+		logger.info("Entering  createPriceEntry -->");	
 		
 		Response response = null;
 		
 		/**
-		 * Checking sellerId,title and manufacturer are mandatory for product entry
+		 * Checking range,max,min and product_id are mandatory for product entry
 		 */
 		try {
 			if (isNullOrEmpty(priceDetails.getRange()) || isNullOrEmpty(priceDetails.getMax())
@@ -91,29 +91,28 @@ public class PriceService {
 			productResponse.setErrorInfo(errorInfo);
 			response = Response.status(Status.OK).entity(productResponse).build();
 		}
-		logger.info("Ending createProductEntry -->");
+		logger.info("Ending createPriceEntry -->");
 		return response;
 	}
 	
 	/**
-	 * This method is for update the product
-	 * @param productDetails
+	 * This method is for update the price
+	 * @param priceDetails
 	 * @param product_id
 	 * @return
 	 */
 	
 	@PUT
-	@Path(TestConstants.PRODUCT_PATH)
+	@Path(TestConstants.PRICE_PATH)
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
-	public Response updateProductEntry(@Valid @RequestBody final Price priceDetails,@QueryParam(TestConstants.PRODUCT_ID) String product_id) {
-		logger.info("Entering  createProductEntry -->");	
+	public Response updatePriceEntry(@Valid @RequestBody final Price priceDetails,@QueryParam(TestConstants.PRODUCT_ID) String product_id) {
+		logger.info("Entering  updatePriceEntry -->");	
 		
 		Response response = null;
 		
-		/**
-		 * Checking sellerId,title and manufacturer are mandatory for product entry
-		 */
+		//Checking sellerId,title and manufacturer are mandatory for product entry
+		
 		try {
 			if (isNullOrEmpty(product_id)) {
 				logger.error("product_id is missing in input request");
@@ -151,17 +150,17 @@ public class PriceService {
 			productResponse.setErrorInfo(errorInfo);
 			response = Response.status(Status.OK).entity(productResponse).build();
 		}
-		logger.info("Ending createProductEntry -->");
+		logger.info("Ending updatePriceEntry -->");
 		return response;
 	}
 	/**
-	 * This method used for get the Product details  through Product_id
+	 * 
 	 * @param product_id
 	 * @return
-	 */
+	 *//*
 	
 	@GET
-	@Path(TestConstants.PRODUCT_PATH)
+	@Path(TestConstants.PRICE_PATH)
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response getProductDetails(@QueryParam(TestConstants.PRODUCT_ID) String product_id) {
@@ -207,7 +206,7 @@ public class PriceService {
 		}
 		logger.info("Ending getProductDetails -->");
 		return response;
-	}
+	}*/
 	
 	public static boolean isNullOrEmpty(String str) {
 		boolean isEmpty = true;
